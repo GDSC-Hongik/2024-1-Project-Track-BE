@@ -1,7 +1,19 @@
-<h2>Hello, Django!</h2>
-<p>Just Codeit !</p>
-<p>Just Codeit !</p>
-<p>Just Codeit !</p>
-<p>Just Codeit !</p>
-<p>Just Codeit !</p>
-<p>Just Codeit !</p>
+{% extends './base.html' %}
+{% load static %}
+
+{% block date-block %}
+    <div>{{date}}</div>
+{% endblock date-block %}
+
+{% block food-container %}
+    {% for menu in menus %}
+    	<div class="food">
+            <img src={% get_static_prefix %}{{ menu.img_path }} width="300px" height="200px"/>
+            <div class="info">
+                <h3>{{ menu.name }}</h3>
+                <P>{{ menu.description }}</p>
+                <a href="{{ menu.id }}">메뉴 보기</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock food-container %}
