@@ -17,6 +17,9 @@
 
 
 {% block content %}
+    <div class="btn_post">
+        <a href={% url 'post-create' %}>글쓰기</a>
+    </div>
     <div class="post_container">
         {% for post in posts %}
             <div class="post"><a href={% url 'post-detail' post.id %}>
