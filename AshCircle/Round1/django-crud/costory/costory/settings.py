@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'posts',  # "posts.apps.PostsConfig" 동일
+    'django_seed',
 ]
 
 MIDDLEWARE = [
