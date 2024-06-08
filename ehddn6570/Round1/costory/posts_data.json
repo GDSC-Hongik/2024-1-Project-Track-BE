@@ -1,0 +1,52 @@
+[
+{
+  "model": "posts.post",
+  "pk": 1,
+  "fields": {
+    "title": "\uccab \ud3ec\uc2a4\ud305",
+    "content": " \uc624\ub298 \ub9e5\ubd81\uc774 \uc634!!!",
+    "dt_created": "2024-05-25T12:35:48.367Z",
+    "dt_modified": "2024-05-25T12:35:48.368Z"
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 2,
+  "fields": {
+    "title": "2\ubc88\uc9f8",
+    "content": "\ub0e0",
+    "dt_created": "2024-05-25T12:44:19.665Z",
+    "dt_modified": "2024-05-25T12:44:19.665Z"
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 3,
+  "fields": {
+    "title": "\ub178\ub798",
+    "content": "\u3134\uc5b4\ub8e8\ub9c8\ub8e8\u314f\u315c\ub098\uc6b0\ub9ac\u314f\u315c\uc544\ucde8\u314f\u314f\u3134\uc5b4\ub9ac\r\n\u315c\u3139\ub219\u3139\ub2c8\u314f\u3134\r\n\u3163\ub204\ub77c\u3163\ub204\ub9ac\u314f\u315c\u3134\uc544\u3163\u3139;\u3141\ub098;\u3163\u3147\u3139\r\n\u3134\uc544\ub8e8\ub098\u315c\ub9ac\u314f;\u3134\uc6b0\ub77c\u3163\ub219\ub77c\u3163\u3141",
+    "dt_created": "2024-05-25T15:11:10.703Z",
+    "dt_modified": "2024-05-25T15:11:10.703Z"
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 4,
+  "fields": {
+    "title": "\uc0c8 \uae00",
+    "content": "\uc0c8 \ub0b4\uc6a9",
+    "dt_created": "2024-05-26T11:58:54.571Z",
+    "dt_modified": "2024-05-26T11:58:54.571Z"
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 5,
+  "fields": {
+    "title": "\uc81c\ubaa8\uc625",
+    "content": "\ub0b4\uc694\uc639",
+    "dt_created": "2024-05-26T12:06:03.198Z",
+    "dt_modified": "2024-05-26T12:06:03.198Z"
+  }
+}
+]
