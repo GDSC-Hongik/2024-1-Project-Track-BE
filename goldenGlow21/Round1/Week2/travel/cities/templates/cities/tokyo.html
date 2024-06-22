@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Travel Website</title>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href={% static 'cities/css/styles.css' %}>
+</head>
+<body>
+    <img id="logo" src={% static 'cities/images/logo.png' %} width="165" height="58">
+    
+    <div id="menu">
+      <a href="/cities/home">Home</a>
+      <a href="/cities/seoul/">Seoul</a>
+      <a href="/cities/tokyo/">Tokyo</a>
+      <a href="/cities/paris/">Paris</a>
+    </div>
+    
+    <img id="photo" src={% static 'cities/images/tokyo.png' %} width="90%">
+</body>
+</html>
