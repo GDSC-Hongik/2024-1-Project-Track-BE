@@ -22,6 +22,20 @@
         <li class="menu-item guest-menu"><a class="podo-chip" href="{% url 'account_signup' %}">회원가입</a></li>
       {% endif %}
     </ul>
+    {% if user.is_authenticated %}
+      <ul class="extra-menu">
+        <li class="extra-menu-item">
+          <a href="{% url 'wishlist' %}">
+            <img src="{% static 'podomarket/icons/ic-wishlist.svg' %}" alt="Liked Posts">
+          </a>
+        </li>
+        <li class="extra-menu-item">
+          <a href="{% url 'following-post-list' %}">
+            <img src="{% static 'podomarket/icons/ic-all.svg' %}" alt="Following Posts">
+          </a>
+        </li>
+      </ul>
+    {% endif %}
   </nav>
 </header>
 {% endblock header %}

@@ -16,6 +16,7 @@
   --post-list-pagination: #ffffff;
   --post-list-pagination-background: #7644c3;
   --post-detail-date: #706e6c;
+  --post-detail-image-background: #a9a9a9;
   --post-sold: #b9b7ba;
   --profile-pic-placeholder: #f3f3f3;
   --post-status: #ffffff;
@@ -491,10 +492,11 @@ input.search-input::placeholder {
 
 .post-detail .image {
   max-width: 1000px;
-  max-height: 645px;
+  max-height: 660px;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: var(--post-detail-image-background);
   border-radius: 11px;
 }
 
