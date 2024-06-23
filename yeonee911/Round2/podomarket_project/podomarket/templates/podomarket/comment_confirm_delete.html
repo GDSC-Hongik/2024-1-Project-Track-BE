@@ -1,0 +1,14 @@
+{% extends "podomarket_base/base_with_header.html" %}
+
+{% block title %}댓글 삭제 | 포도마켓{% endblock title %}
+
+{% block content %}
+<form class="podo-noti delete-confirm" method="post">
+  {% csrf_token %}
+  <span>정말 댓글을 삭제하시겠습니까?</span>
+  <div class="buttons">
+    <button class="podo-button darkpurple" type="submit">삭제</button>
+    <a class="podo-button darkgray" href="{% url 'post-detail' comment.post.id %}">취소</a>
+  </div>
+</form>
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends "podomarket_base/base_with_header.html" %}
+{% load widget_tweaks %}
+
+{% block title %}프로필 수정 | 포도마켓{% endblock title %}
+
+{% block content %}
+<div class="profile-form">
+  <form class="form" method="post" autocomplete="off" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="profile-pic">
+      <div class="thumb" style="background-image: url('{{ user.profile_pic.url }}')"></div>
+      <div class="file">
+        {{ form.profile_pic }}
+      </div>
+    </div>
+    <div class="nickname">
+      {{ form.nickname|add_class:"podo-input"|add_error_class:"error"|attr:"placeholder:닉네임" }}
+      {% for error in form.nickname.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="kakao-id">
+      {{ form.kakao_id|add_class:"podo-input"|add_error_class:"error"|attr:"placeholder:카카오톡 ID" }}
+      {% for error in form.kakao_id.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="address">
+      {{ form.address|add_class:"podo-input"|add_error_class:"error"|attr:"placeholder:주소" }}
+      {% for error in form.address.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="buttons">
+      <a class="podo-button large secondary cancel" href="{% url 'profile' user.id %}">취소</a>
+      <button class="podo-button large primary submit" type="submit">완료</button>
+    </div>
+  </form>
+</div>
+{% endblock content %}
