@@ -1,0 +1,16 @@
+{% extends "podomarket_base/base_with_navbar.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}댓글 수정 | 포도마켓{% endblock title %}
+
+{% block content %}
+<form class="comment-update-form" method="post">
+  {% csrf_token %}
+  {{ form.content|attr:"placeholder:댓글 내용을 입력해주세요."|add_class:"podo-input" }}
+  <div class="buttons">
+    <button class="podo-button darkpurple" type="submit">완료</button>
+    <a class="podo-button darkgray" href="{% url 'post-detail' comment.post.id %}">취소</a>
+  </div>
+</form>
+{% endblock content %}

@@ -1,0 +1,9 @@
+이메일                      비밀번호         슈퍼유저(Y/N)      닉네임
+
+admin@example.com         Django123!     Y                admin 
+codeit@example.com        Django123!     N                코드잇
+groo@example.com          Django123!     N                아이앰그루트 
+yuna@example.com          Django123!     N                유나
+joy@example.com           Django123!     N                조이 
+koby@example.com          Django123!     N                아보카도 
+jho24@example.com         Django123!     N                whdgns

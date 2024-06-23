@@ -1,0 +1,293 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+* {
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
+}
+
+:root {
+  --text: #2f2c28;
+  --link: #7644c3;
+  --button: #fff;
+  --button-background: #7644c3;
+  --button-decoration: #4eda7d;
+  --button-hover-background: #9264d8;
+  --button-hover-decoration: #89efab;
+  --button-negative-background: #d62f50;
+  --button-negative-hover: #fcd3d3;
+  --button-secondary-background: #b9b7ba;
+  --button-secondary-hover: #e0e0e0;
+  --button-purple: #552899;
+  --button-purple-background: #e4d4fa;
+  --button-darkpurple-background: #552899;
+  --button-darkgray-background: #c6c6cc;
+
+  --input-background: #f3f3f3;
+  --input-placeholder: #8a95a0;
+  --input-focus-background: #f5f0fc;
+  --input-focus-border: #7644c3;
+  --input-error: #e6584e;
+  --input-error-background: #fcf1f0;
+  --input-error-border: #d62f50;
+
+  --chip-primary: #7644c3;
+  --chip-primary-background: #f5f0fc;
+  --chip-primary-border: #7644c3;
+  --chip-border: #d9d9d9;
+
+  --card-background: #fff;
+
+  --box-border: #e3e1dc;
+  --box-gray-background: #f3f3f3;
+
+  --noti-background: #f4f3f6;
+  --noti-purple: #552899;
+  --noti-purple-background: #f5f0fc;
+
+  --links-divider: #979797;
+
+  --background-and-color-transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a.podo-button {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+}
+
+.podo-button {
+  position: relative;
+  border: none;
+  border-radius: 9999px;
+  transition: var(--background-and-color-transition);
+  cursor: pointer;
+  background-color: var(--button-background);
+  color: var(--button);
+  font-weight: 500;
+}
+
+.podo-button:hover {
+  background-color: var(--button-hover-background);
+}
+
+.podo-button.primary::after {
+  content: ' ';
+  position: absolute;
+  left: calc(100% - 20px);
+  top: 50%;
+  bottom: 0;
+  right: 0;
+  background-color: var(--button-decoration);
+  border-radius: 100% 0% 100% 0% / 100% 0% 100% 0%;
+  transition: var(--background-and-color-transition);
+}
+
+.podo-button.primary.large::after {
+  left: calc(100% - 30px);
+}
+
+.podo-button:hover::after,
+.podo-button.primary:hover::after {
+  background-color: var(--button-hover-decoration);
+}
+
+.podo-button.negative::after,
+.podo-button.secondary::after {
+  display: none;
+}
+
+.podo-button.negative {
+  background-color: var(--button-negative-background);
+}
+
+.podo-button.negative:hover {
+  color: var(--button-negative-hover);
+}
+
+.podo-button.secondary {
+  background-color: var(--button-secondary-background);
+}
+
+.podo-button.secondary:hover:not(:disabled) {
+  color: var(--button-secondary-hover);
+}
+
+.podo-button.small {
+  padding: 8px 18px;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.podo-button,
+.podo-button.medium {
+  padding: 14px;
+  font-size: 17px;
+  line-height: 17px;
+}
+
+.podo-button.large {
+  padding: 18px 27px;
+  font-size: 21px;
+  line-height: 21px;
+}
+
+.podo-button.purple {
+  padding: 8px 21px;
+}
+
+.podo-button.darkpurple,
+.podo-button.darkgray {
+  padding: 13px 31px;
+}
+
+.podo-button.purple {
+  color: var(--button-purple);
+  background-color: var(--button-purple-background);
+}
+
+.podo-button.darkpurple {
+  background-color: var(--button-darkpurple-background);
+}
+
+.podo-button.darkgray {
+  background-color: var(--button-darkgray-background);
+}
+
+.podo-button:disabled {
+  cursor: not-allowed;
+}
+
+.podo-input {
+  width: 100%;
+  padding: 17px 29px 17px;
+  border: 1px solid transparent;
+  border-radius: 27px;
+  outline: none;
+  font-size: 17px;
+  line-height: 17px;
+  background-color: var(--input-background);
+}
+
+.podo-input input {
+  font-size: 17px;
+}
+
+textarea.podo-input {
+  resize: none;
+  line-height: 2;
+}
+
+.podo-input:focus {
+  border-color: var(--input-focus-border);
+  background-color: var(--input-focus-background);
+  transition: var(--background-and-color-transition), border-color 0.2s ease;
+}
+
+.podo-input:placeholder {
+  color: var(--input-placeholder);
+}
+
+.podo-input.error {
+  padding-right: 46px;
+  border: 1px solid var(--input-error-border);
+  background-color: var(--input-error-background);
+  background-position: top 50% right 13px;
+  background-image: url('../icons/ic-error.svg');
+  background-size: 29px;
+  background-repeat: no-repeat;
+}
+
+.error-message {
+  color: var(--input-error);
+}
+
+.podo-input ~ .error-message {
+  display: block;
+  width: 100%;
+  line-height: 1.7;
+  text-align: right;
+  font-size: 14px;
+}
+
+.podo-chip {
+  display: inline-block;
+  padding: 5px 18px 4px;
+  font-size: 17px;
+  line-height: 25px;
+  border: 1px solid var(--chip-border);
+  border-radius: 9999px;
+}
+
+.podo-chip.primary {
+  font-weight: bold;
+  color: var(--chip-primary);
+  background-color: var(--chip-primary-background);
+  border-color: var(--chip-primary-border);
+}
+
+.podo-del {
+  color: #b9b7ba;
+}
+
+.podo-card {
+  border-radius: 16px;
+  box-shadow: 0 0 14px 0 rgba(219, 221, 223, 0.79);
+  background-color: var(--card-background);
+}
+
+.podo-box {
+  border-radius: 33px;
+  border: solid 2px var(--box-border);
+}
+
+.podo-box.gray-background {
+  border-radius: 27px;
+  border: none;
+  background-color: var(--box-gray-background);
+}
+
+.podo-noti {
+  font-size: 20px;
+  padding: 30px 48px 31px 63px;
+  border-radius: 60px;
+  background-color: var(--noti-background);
+  line-height: 34px;
+}
+
+.podo-noti.purple {
+  color: var(--noti-purple);
+  background-color: var(--noti-purple-background);
+}
+
+a.podo-link {
+  color: var(--link);
+  font-weight: bold;
+}
+
+ul.podo-links {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+  letter-spacing: -0.26px;
+}
+
+ul.podo-links > li.divider {
+  width: 1px;
+  height: 13px;
+  margin: 0 9px;
+  border-right: 1px solid var(--links-divider);
+}
