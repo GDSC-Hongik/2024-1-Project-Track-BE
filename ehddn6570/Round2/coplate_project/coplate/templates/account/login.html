@@ -1,0 +1,35 @@
+{% extends "coplate_base/base.html" %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}로그인 | Coplate{% endblock title %}
+
+{% block content %}
+<div class="account-background">
+  <main class="account">
+    <div class="title">
+      <a href="#">
+        <img class="logo" src="{% static 'coplate/assets/coplate-logo.svg' %}" alt="Coplate Logo">
+      </a>
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-error error-message">이메일 또는 비밀번호가 올바르지 않습니다.</div>
+      <div>
+        <input type="email" name="login" placeholder="이메일" autocomplete="email" class="cp-input" required id="id_login">
+      </div>
+      <div>
+        <input type="password" name="password" placeholder="비밀번호" autocomplete="current-password" class="cp-input" required id="id_password">
+      </div>
+      <button class="cp-button" type="submit">로그인</button>
+    </form>
+    
+    <div class="info">
+      <a class="item" href="#">비밀번호 찾기</a>
+      <a class="item" href="#">회원가입</a>
+    </div>
+  </main>
+</div>
+{% endblock content %}
