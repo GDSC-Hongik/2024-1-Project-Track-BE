@@ -1,0 +1,40 @@
+{% extends "podomarket_base/base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}환영합니다! | 포도마켓{% endblock title %}
+
+{% block body_class %}with-border with-background{% endblock %}
+
+{% block content %}
+<div class="profile-form">
+  <h1 class="heading">환영합니다!<br><strong>프로필</strong>을 작성해주세요</h1>
+  <form class="form" method="post" autocomplete="off" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="profile-pic">
+      <div class="thumb" style="background-image: url('{{ user.profile_pic.url }}')"></div>
+      <div class="file">
+        {{ form.profile_pic }}
+      </div>
+    </div>
+    <div class="nickname">
+      {{ form.nickname|add_class:"podo-input"|add_error_class:"error"|attr:"placeholder:닉네임" }}
+      {% for error in form.nickname.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="kakao-id">
+      {{ form.kakao_id|add_class:"podo-input"|add_error_class:"error"|attr:"placeholder:카카오 ID" }}
+      {% for error in form.kakao_id.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="address">
+      {{ form.address|add_class:"podo-input"|add_error_class:"error"|attr:"placeholder:주소 (예: 서울시 관악구 신림동)" }}
+      {% for error in form.address.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <button class="podo-button large primary submit-only" type="submit">완료</button>
+  </form>
+</div>
+{% endblock content %}
