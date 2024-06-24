@@ -1,0 +1,36 @@
+{% extends "coplate_base/base.html" %}
+
+{% load static %}
+
+{% block header %}
+<header class="site-header navbar">
+  <div class="content max-width">
+    <a href="{% url 'index' %}">
+      <img class="logo" src="{% static 'coplate/assets/coplate-logo.svg' %}" alt="Coplate Logo">
+    </a>
+    <nav>
+      <ul class="navbar">
+        {% if user.is_authenticated %}
+          {% if user.is_staff %}
+            <li><a href="{% url 'admin:index' %}">관리자</a></li>
+          {% endif %}
+          <li><a href="{% url 'profile' user.id %}">내 프로필</a></li>
+          <li><a href="{% url 'account_logout' %}">로그아웃</a></li>
+        {% else %}
+          <li><a href="{% url 'account_login' %}">로그인</a></li>
+          <li><a href="{% url 'account_signup' %}">회원가입</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</header>
+{% endblock header %}
+
+{% block footer %}
+<footer class="site-footer">
+  <div class="max-content-width content">
+    <div></div>
+    <div>COPLATE</div>
+  </div>
+</footer>
+{% endblock footer %}

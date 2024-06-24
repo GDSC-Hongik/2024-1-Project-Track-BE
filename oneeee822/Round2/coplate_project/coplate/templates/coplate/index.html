@@ -1,0 +1,38 @@
+{% extends "coplate_base/base_with_navbar.html" %}
+
+{% block content %}
+<main class="site-body index">
+  <div class="main-header">
+    <div class="fg"></div>
+    <div class="content">
+      <h1>오늘은 어디서 먹을까?</h1>
+      <div class="header-search">
+        <form class="search-form" action="{% url 'search' %}" method="get">
+          <input class="search-input" name="query" type="text" placeholder="식당, 음식 등을 검색해보세요" required>
+          <button class="cp-button search-button" type="submit">검색</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="content-list max-content-width">
+    <div class="header">
+      <h2>리뷰 목록</h2>
+      <a class="cp-ic-button circle newreview" href="{% url 'review-create' %}">리뷰 작성</a>
+    </div>
+    {% include 'components/review_list.html' with reviews=latest_reviews empty_message="아직 리뷰가 없어요 :(" %}
+    {% if latest_reviews %}
+      <a class="cp-button" href="{% url 'review-list' %}">전체 리뷰 보러가기</a>
+    {% endif %}
+    {% if user.is_authenticated %}
+      <div class="header">
+        <h2>팔로잉 유저들의 리뷰</h2>
+      </div>
+      {% include 'components/review_list.html' with reviews=latest_following_reviews empty_message="아직 리뷰가 없어요 :(" %}
+      {% if latest_following_reviews %}
+        <a class="cp-button" href="{% url 'following-review-list' %}">팔로잉 유저 리뷰 모아보기</a>
+      {% endif %}
+    {% endif %}
+
+  </div>
+</main>
+{% endblock content %}
