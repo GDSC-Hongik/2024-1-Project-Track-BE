@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>코스토랑</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href={% static 'menus/css/styles.css' %}> 
+    <link rel="stylesheet" type="text/css"
+    href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+</head>
+<body> 
+    <div id="header">
+        <div class="container">
+            <div class="nav">
+                <a href="/menus"><img src={% static 'menus/images/logo-color.svg' %}></a>
+            </div>
+            <div class="header_txt">
+                <p>오늘도<b>신선한재료</b>로만든요리</p>
+                <h1><img src={% static 'menus/images/header-txt.svg' %} style="width: 330px; height: 89px;"></h1>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+       <div class="container">
+            <div class="content_txt">
+                <h2>오늘의 메뉴</h2>
+                <p class="date-text"> {{today}} </p>
+            </div>
+            <div class="food_container">
+                {% for menu in menus %}
+                    <div class="food">
+                        <img src={%get_static_prefix%}{{menu.img_path}}>
+                        <div class="info">
+                            <h3>{{menu.name}}</h3>
+                            <p>{{menu.description}}</p>
+                            <a href="food/{{menu.id}}">메뉴 보기</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            <div class="footer">
+                <img src={% static 'menus/images/logo-gray.svg' %}>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
