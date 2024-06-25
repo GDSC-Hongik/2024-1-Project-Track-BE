@@ -5,17 +5,17 @@ from django.urls import reverse
 from .models import post
 from .forms import postform
 
-# Create your views here.
-# def post_list(request):
-#     posts=post.objects.all()
-#     paginator=Paginator(posts,6)
-#     curr_page_number=request.GET.get('page')
-#     if curr_page_number is None:
-#         curr_page_number=1
-#     page=paginator.page(curr_page_number)
-#     return render(request,'posts/post_list.html',{'page':page})
-#     context={"posts": posts}
-#     return render(request,'posts/post_list.html',context)
+    # Create your views here.
+    # def post_list(request):
+    #     posts=post.objects.all()
+    #     paginator=Paginator(posts,6)
+    #     curr_page_number=request.GET.get('page')
+    #     if curr_page_number is None:
+    #         curr_page_number=1
+    #     page=paginator.page(curr_page_number)
+    #     return render(request,'posts/post_list.html',{'page':page})
+    #     context={"posts": posts}
+    #     return render(request,'posts/post_list.html',context)
 
 class PostListView(ListView):
     model=post

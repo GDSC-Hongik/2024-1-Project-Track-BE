@@ -6,7 +6,7 @@ class post(models.Model):
     content=models.TextField(validators=[MinLengthValidator(10,"글은 10자 이상 적어주세요"),validate_symbol])
     dt_created=models.DateTimeField(verbose_name="Date Created",auto_now_add=True)
     dt_modified=models.DateTimeField(verbose_name="Date Modified",auto_now=True)
-    
+        
     def __str__(self):
         return self.title
 
