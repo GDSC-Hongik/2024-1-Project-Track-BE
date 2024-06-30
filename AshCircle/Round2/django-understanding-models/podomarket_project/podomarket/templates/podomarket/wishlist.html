@@ -1,0 +1,15 @@
+{% extends "podomarket_base/base_with_navbar.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="post-list">
+  <div class="header">
+    <h2>위시리스트 ({{ paginator.count }})</h2>
+  </div>
+  {% include 'components/post_list.html' with posts=liked_posts empty_message="위시리스트가 비어있어요 :(" %}
+  {% if is_paginated %}
+    {% include 'components/pagination.html' with page_obj=page_obj %}
+  {% endif %}
+</div>
+{% endblock content %}
