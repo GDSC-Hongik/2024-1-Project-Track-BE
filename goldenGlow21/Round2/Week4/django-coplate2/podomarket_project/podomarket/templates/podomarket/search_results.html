@@ -1,0 +1,19 @@
+{% extends "podomarket_base/base_with_navbar.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="post-list search-results">
+  <form class="search-form" action="{% url 'search' %}" method="get">
+    <input class="search-input" name="query" value={{ query }} type="text" placeholder="검색어를 입력해주세요" required>
+    <button class="podo-button darkpurple" type="submit">검색</button>
+  </form>
+  <div class="header">
+    <h2><span class="query">{{ query }}</span>에 대한 검색 결과 ({{ paginator.count }})</h2>
+  </div>
+  {% include 'components/post_list.html' with posts=search_results empty_message="검색 결과가 없어요 :(" %}
+  {% if is_paginated %}
+    {% include 'components/pagination.html' with page_obj=page_obj %}
+  {% endif %}
+</div>
+{% endblock content %}

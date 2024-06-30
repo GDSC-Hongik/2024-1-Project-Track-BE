@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'podomarket/styles/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'podomarket/styles/theme.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'podomarket/favicon/favicon.ico' %}">
+
+    <title>{% block title %}포도마켓{% endblock title %}</title>
+  </head>
+  <body class="{% block body_class %}{% endblock %}">
+    {% block header %}{% endblock header %}
+    <main class="site-main">
+      {% block content %}{% endblock content %}
+    </main>
+    {% block footer %}{% endblock footer %}
+  </body>
+</html>

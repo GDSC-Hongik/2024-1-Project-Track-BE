@@ -1,0 +1,58 @@
+{% extends "podomarket_base/base_with_navbar.html" %}
+
+{% load static %}
+
+{% block title %}{{ profile_user.nickname }} | 포도마켓{% endblock title %}
+
+{% block content %}
+<div class="podo-card profile-header">
+  <div class="profile-pic" style="background-image: url('{{ profile_user.profile_pic.url }}')"></div>
+  <div class="info">
+    <div class="header-row">
+      <span class="nickname">{{ profile_user.nickname }}</span>
+      {% if user.is_authenticated and user != profile_user %}
+        <form action="{% url 'process-follow' profile_user.id %}" method="post">
+          {% csrf_token %}
+          {% if is_following %}
+            <button class="follow-button secondary" type="submit">
+              언팔로우
+            </button>
+          {% else %}
+            <button class="follow-button" type="submit">
+              팔로우
+            </button>
+          {% endif %}
+        </form>
+      {% endif %}
+    </div>
+    <ul class="podo-links">
+      <li>{{ profile_user.kakao_id }}</li>
+      <li class="divider"></li>
+      <li>{{ profile_user.address }}</li>
+    </ul>
+  </div>
+  {% if user == profile_user %}
+    <div class="buttons">
+      <a class="podo-button small secondary" href="{% url 'profile-update' %}">
+        프로필 수정
+      </a>
+      <a class="podo-button small secondary" href="{% url 'account_change_password' %}">
+        비밀번호 변경
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+<div class="post-list">
+  <div class="header">
+    <h2>{{ profile_user.nickname }}님의 최신글</h2>
+    {% if user_posts %}
+      <a class="link" href="{% url 'user-post-list' profile_user.id %}">
+        <span>게시글 전체보기</span>
+        <img class="triangle-icon" src="{% static 'podomarket/icons/ic-triangle.svg' %}" alt="triangle icon">
+      </a>
+    {% endif %}
+  </div>
+  {% include 'components/post_list.html' with posts=user_posts empty_message="등록된 게시글이 없어요 :(" %}
+</div>
+{% endblock content %}
