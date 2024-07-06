@@ -1,0 +1,22 @@
+{% extends "coplate_base/base_with_navbar.html" %}
+{% load static %}
+
+{% block title %}{{ profile_user.nickname }}님의 리뷰 | Coplate{% endblock title %}
+
+{% block content %}
+<main class="site-body">
+  <div class="content-list max-content-width">
+    <div class="header">
+      <h2>{{ profile_user.nickname }}님의 리뷰 ({{ paginator.count }})</h2>
+    </div>
+    {% include 'components/review_list.html' with reviews=user_reviews empty_message="아직 리뷰가 없어요 :(" %}
+    </div>
+    <div class="wrap-pagination">    
+      <a class="cp-ic-button circle backbutton" href="{% url 'profile' profile_user.id %}">프로필로 돌아가기</a>
+      {% if is_paginated %}
+      {% include 'components/pagination.html' with page_obj=page_obj %}
+      {% endif %}
+    </div>
+  </div>
+</main>
+{% endblock content %}
