@@ -1,0 +1,49 @@
+{% extends "podomarket_base/base.html" %}
+
+{% load static %}
+
+{% block body_class %}with-border{% endblock %}
+
+{% block header %}
+<header class="site-header">
+  <a class="logo" href="{% url 'index' %}">
+    <img src="{% static 'podomarket/assets/logo.svg' %}" alt="포도마켓">
+  </a>
+  <nav>
+    <ul class="menu">
+      {% if user.is_authenticated %}
+        {% if user.is_staff %}
+          <li class="menu-item user-menu"><a href="{% url 'admin:index' %}">관리자</a></li>
+        {% endif %}
+        <li class="menu-item user-menu"><a href="{% url 'profile' user.id %}">내 프로필</a></li>
+        <li class="menu-item user-menu"><a href="{% url 'account_logout' %}">로그아웃</a></li>
+      {% else %}
+        <li class="menu-item guest-menu"><a class="podo-chip" href="{% url 'account_login' %}">로그인</a></li>
+        <li class="menu-item guest-menu"><a class="podo-chip" href="{% url 'account_signup' %}">회원가입</a></li>
+      {% endif %}
+    </ul>
+    {% if user.is_authenticated %}
+      <ul class="extra-menu">
+        <li class="extra-menu-item">
+          <a href="{% url 'wishlist' %}">
+            <img src="{% static 'podomarket/icons/ic-wishlist.svg' %}" alt="Liked Posts">
+          </a>
+        </li>
+        <li class="extra-menu-item">
+          <a href="{% url 'following-post-list' %}">
+            <img src="{% static 'podomarket/icons/ic-all.svg' %}" alt="Following Posts">
+          </a>
+        </li>
+      </ul>
+    {% endif %}
+  </nav>
+</header>
+{% endblock header %}
+
+{% block footer %}
+<footer class="site-footer">
+  <div class="content">
+    <span>PODOMARKET</span>
+  </div>
+</footer>
+{% endblock footer %}

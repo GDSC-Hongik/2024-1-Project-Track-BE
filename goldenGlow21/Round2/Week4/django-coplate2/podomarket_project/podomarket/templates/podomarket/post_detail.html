@@ -1,0 +1,136 @@
+{% extends "podomarket_base/base_with_navbar.html" %}
+
+{% load static %}
+{% load humanize %}
+{% load widget_tweaks %}
+
+{% block title %}{{ post.title }} | 포도마켓{% endblock title %}
+
+{% block content %}
+<div class="post-detail">
+  {% if post.author == user %}
+    <div class="header">
+      <div class="buttons">
+        <a class="podo-button small negative" href="{% url 'post-delete' post.id %}">삭제</a>
+        <a class="podo-button small secondary" href="{% url 'post-update' post.id %}">수정</a>
+      </div>
+    </div>
+  {% endif %}
+  <article>
+    <img class="image" src="{{ post.image1.url }}">
+    {% if post.image2 %}
+      <img class="image" src="{{ post.image2.url }}">
+    {% endif %}
+    {% if post.image3 %}
+      <img class="image" src="{{ post.image3.url }}">
+    {% endif %}
+    <div class="post-meta">
+      <h2 class="title">{{ post.title }}</h2>
+      <div class="item-info">
+        <div class="item-price {% if post.is_sold %}sold{% endif %}">{{ post.item_price|intcomma }}원</div>
+        <div class="podo-chip primary">상태 {{ post.item_condition }}</div>
+        <span class="date">{{ post.dt_created|date:"Y.m.d" }}</span>
+      </div>
+      {% if post.is_sold %}<div class="is-sold">거래완료</div>{% endif %}
+    </div>
+    <a class="profile-link" href="{% url 'profile' post.author.id %}">
+      <div class="podo-box gray-background profile">
+        <div class="profile-pic" style="background-image: url('{{ post.author.profile_pic.url }}')"></div>
+        <div class="profile-info">
+          <div class="nickname">{{ post.author.nickname }}</div>
+          <ul class="podo-links">
+            <li>{{ post.author.kakao_id }}</li>
+            <li class="divider"></li>
+            <li>{{ post.author.address }}</li>
+          </ul>
+        </div>
+      </div>
+    </a>
+    <p class="item-detail">
+      {{ post.item_details|linebreaksbr }}
+    </p>
+  </article>
+
+  <div class="like-comment-header">
+    {% if user.is_authenticated %}
+      <form action="{% url 'process-like' post_ctype_id post.id %}" method="post">
+        {% csrf_token %}
+        <button class="like-button" type="submit">
+          {% if likes_post %}
+            <img src="{% static 'podomarket/icons/ic-heart-purple.svg' %}" alt="filled like icon">
+          {% else %}
+            <img src="{% static 'podomarket/icons/ic-heart.svg' %}" alt="like icon">
+          {% endif %}
+          <span> {{ post.likes.count }}</span>
+        </button>
+      </form>
+    {% else %}
+      <a class="like-button" href="{% url 'account_login' %}?next={% url 'post-detail' post.id %}">
+        <img src="{% static 'podomarket/icons/ic-heart.svg' %}" alt="like icon">
+        <span> {{ post.likes.count }}</span>
+      </a>
+    {% endif %}
+    <div class="comment-info">
+      <img src="{% static 'podomarket/icons/ic-comment.svg' %}" alt="comment icon"> 
+      <span> {{ post.comments.count }}</span>
+    </div>
+  </div>
+  <form class="comment-create-form" action="{% url 'comment-create' post.id %}" method="post">
+    {% csrf_token %}
+    {% if user.is_authenticated %}
+      {{ form.content|attr:"placeholder:댓글 내용을 입력해주세요."|add_class:"podo-input" }}      
+      <button class="podo-button" type="submit">등록</button>
+    {% else %}
+      <a href="{% url 'account_login' %}?next={% url 'post-detail' post.id %}">
+        {{ form.content|attr:"placeholder:댓글을 작성하려면 로그인이 필요합니다."|add_class:"podo-input"|attr:"disabled" }}      
+      </a>
+      <button class="podo-button secondary" type="submit" disabled>등록</button>
+    {% endif %}
+  </form>
+  {% for comment in post.comments.all %}
+    <div class="comment">
+      <div class="comment-header">
+        <a href="{% url 'profile' comment.author.id %}">
+          <div class="comment-author">
+            <div class="profile-pic" style="background-image: url('{{ comment.author.profile_pic.url }}')"></div>
+            <span>{{ comment.author.nickname }}</span>
+          </div>
+        </a>
+        <div class="date">
+          {{ comment.dt_created|date:"Y.m.d" }}
+        </div>
+      </div>
+      <div class="comment-content">
+        {{ comment.content|linebreaksbr }}
+      </div>
+      <div class="comment-footer">
+        {% if user.is_authenticated %}
+          <form action="{% url 'process-like' comment_ctype_id comment.id %}" method="post">
+            {% csrf_token %}
+            <button class="like-button" type="submit">
+              {% if comment in liked_comments %}
+                <img width="15px" src="{% static 'podomarket/icons/ic-heart-purple.svg' %}" alt="filled like icon">
+              {% else %}
+                <img width="15px" src="{% static 'podomarket/icons/ic-heart.svg' %}" alt="like icon">
+              {% endif %}                    
+              <span> {{ comment.likes.count }}</span>
+            </button>
+          </form>
+        {% else %}
+          <a class="like-button" href="{% url 'account_login' %}?next={% url 'post-detail' post.id %}">
+            <img width="15px" src="{% static 'podomarket/icons/ic-heart.svg' %}" alt="like icon">
+            <span> {{ comment.likes.count }}</span>
+          </a>
+        {% endif %}
+        {% if user == comment.author %}
+          <div class="buttons">
+            <a href="{% url 'comment-delete' comment.id %}">삭제</a>
+            <span> | </span>
+            <a href="{% url 'comment-update' comment.id %}">수정</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock content %}
