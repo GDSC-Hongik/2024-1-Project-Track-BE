@@ -1,0 +1,24 @@
+{% extends "podomarket_base/base_with_navbar.html" %}
+
+{% load static %}
+
+{% block title %}{{ profile_user.nickname }}님의 게시글 | 포도마켓{% endblock title %}
+
+{% block content %}
+<div class="post-list">
+  <div class="header">
+    <h2>{{ profile_user.nickname }}님의 게시글 ({{ paginator.count }})</h2>
+  </div>
+  {% include 'components/post_list.html' with posts=user_posts empty_message="등록된 게시글이 없어요 :(" %}
+  <div class="wrap-pagination">
+    <a class="backbutton" href="{% url 'profile' profile_user.id %}">
+      <img class="triangle-icon" src="{% static 'podomarket/icons/ic-triangle.svg' %}" alt="triangle icon">
+      프로필로 돌아가기
+    </a>
+    {% if is_paginated %}
+      {% include 'components/pagination.html' with page_obj=page_obj %}
+    {% endif %}
+    <div class="spacer"></div>
+  </div>
+</div>
+{% endblock content %}

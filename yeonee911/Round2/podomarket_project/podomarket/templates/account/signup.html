@@ -1,0 +1,41 @@
+{% extends "podomarket_base/base.html" %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}회원가입 | 포도마켓{% endblock title %}
+
+{% block body_class %}with-border with-background{% endblock %}
+
+{% block content %}
+<div class="signup">
+  <form method="post">
+    <a href="{% url 'index' %}">
+      <img class="logo" src="{% static 'podomarket/assets/logo.svg' %}" alt="포도마켓">
+    </a>
+    {% csrf_token %}
+    <div class="email">
+      {{ form.email|add_class:"podo-input"|attr:"placeholder:이메일"|add_error_class:"error" }}
+      {% for error in form.email.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="password1">
+      {{ form.password1|add_class:"podo-input"|attr:"placeholder:비밀번호"|add_error_class:"error" }}
+      {% for error in form.password1.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="password2">
+      {{ form.password2|add_class:"podo-input"|attr:"placeholder:비밀번호 확인"|add_error_class:"error" }}
+      {% for error in form.password2.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <button class="podo-button large primary submit" type="submit">회원가입</button>
+  </form>
+  <div class="footer">
+    이미 회원이신가요? <a class="podo-link" href="{% url 'account_login' %}">로그인</a>
+  </div>
+</div>
+{% endblock content %}

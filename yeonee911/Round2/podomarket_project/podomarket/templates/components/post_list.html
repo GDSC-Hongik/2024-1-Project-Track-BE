@@ -1,0 +1,31 @@
+{% load humanize %}
+
+<div class="posts">
+  {% for post in posts %}
+    <div class="podo-card post">
+      <img class="thumb" src="{{ post.image1.url }}" alt="썸네일 이미지">
+      <div class="content">
+        <h2 class="title">{{ post.title }}</h2>
+        <div class="price-and-status {% if post.is_sold %}sold{% endif %}">
+          <span class="price">
+            {{ post.item_price|intcomma }}원
+          </span>
+          {% if post.is_sold %}
+            <span class="status">거래 완료</span>
+          {% endif %}
+        </div>
+        <div class="meta">
+          {{ post.dt_created|date:"Y.m.d" }}&nbsp;|&nbsp;{{ post.author.address }}
+        </div>
+        <a
+          class="podo-button {% if post.is_sold %}secondary{% else %}primary{% endif %} button"
+          href="{% url 'post-detail' post.id %}"
+        >          
+          자세히보기
+        </a>
+      </div>
+    </div>
+  {% empty %}
+    <p class="empty">{{ empty_message }}</p>
+  {% endfor %}
+</div>
